@@ -1,4 +1,4 @@
-import { NativeBaseProvider } from 'native-base'
+import { NativeBaseProvider, StatusBar } from 'native-base'
 import {
   useFonts,
   Roboto_400Regular,
@@ -20,7 +20,13 @@ export default function App() {
 
   return (
     <NativeBaseProvider theme={THEME}>
-      {fontsLoaded ? <Loading /> : <SignIn />}
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor="transparent"
+        translucent
+      />
+
+      {fontsLoaded ? <SignIn /> : <Loading />}
     </NativeBaseProvider>
   )
 }
