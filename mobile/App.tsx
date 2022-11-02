@@ -1,4 +1,6 @@
 import { NativeBaseProvider, StatusBar } from 'native-base'
+import { AuthContextProvider } from './src/contexts/AuthContext'
+
 import {
   useFonts,
   Roboto_400Regular,
@@ -20,13 +22,15 @@ export default function App() {
 
   return (
     <NativeBaseProvider theme={THEME}>
-      <StatusBar
-        barStyle="light-content"
-        backgroundColor="transparent"
-        translucent
-      />
+      <AuthContextProvider>
+        <StatusBar
+          barStyle="light-content"
+          backgroundColor="transparent"
+          translucent
+        />
 
-      {fontsLoaded ? <SignIn /> : <Loading />}
+        {fontsLoaded ? <SignIn /> : <Loading />}
+      </AuthContextProvider>
     </NativeBaseProvider>
   )
 }
