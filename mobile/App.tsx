@@ -12,7 +12,8 @@ import { SignIn } from './src/screens/SignIn'
 import { Loading } from './src/components/Loading'
 
 import { THEME } from './src/styles/theme'
-import { Pools } from './src/screens/Pools'
+
+import { Routes } from './src/routes'
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -30,7 +31,7 @@ export default function App() {
           translucent
         />
 
-        {fontsLoaded ? <SignIn /> : <Loading />}
+        {fontsLoaded ? <Routes /> : <Loading />}
       </AuthContextProvider>
     </NativeBaseProvider>
   )
