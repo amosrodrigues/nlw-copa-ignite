@@ -15,16 +15,17 @@ export function New() {
   const toast = useToast()
 
   async function handlePoolCreate() {
-    if (!title.trim()) {
-      return toast.show({
-        title: 'Informe um nome para o seu bolão',
-        placement: 'top',
-        bgColor: 'red.500',
-      })
-    }
-
     try {
       setIsLoading(true)
+
+      if (!title.trim()) {
+        setTitle('')
+        return toast.show({
+          title: 'Informe um nome para o seu bolão',
+          placement: 'top',
+          bgColor: 'red.500',
+        })
+      }
 
       await api.post('/pools', { title })
 
