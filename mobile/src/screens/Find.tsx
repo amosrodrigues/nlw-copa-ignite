@@ -3,7 +3,7 @@ import { Heading, useToast, VStack } from 'native-base'
 import { Input } from '../components/Input'
 import { Button } from '../components/Button'
 import { Header } from '../components/Header'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { api } from '../services/api'
 import { useNavigation } from '@react-navigation/native'
 
@@ -39,7 +39,6 @@ export function Find() {
       setCode('')
     } catch (error) {
       console.log(error)
-      setIsLoading(false)
 
       if (error.response?.data?.message === 'Pool not found.') {
         return toast.show({
@@ -62,6 +61,8 @@ export function Find() {
         placement: 'top',
         bgColor: 'red.500',
       })
+    } finally {
+      setIsLoading(false)
     }
   }
 
