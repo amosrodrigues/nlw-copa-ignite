@@ -11,8 +11,12 @@ import appPreviewImg from '../assets/app-nlw-copa-preview.png'
 import logoImg from '../assets/logo.svg'
 import usersAvatarExampleImg from '../assets/users-avatar-example.png'
 import iconCheckImg from '../assets/icon-check.svg'
+
 import { api } from '../lib/axios'
 import { FormEvent, useState } from 'react'
+
+import { ToastContainer, toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 export default function Home(props: HomeProps) {
   const [poolTitle, setPoolTitle] = useState('')
@@ -29,8 +33,19 @@ export default function Home(props: HomeProps) {
 
       await navigator.clipboard.writeText(code)
 
-      alert(
+      toast.success(
         'Bolão criado com sucesso, o código foi copiado para área de transferência!',
+        {
+          position: 'top-center',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'dark',
+          style: { width: 370, border: '1px solid #323238' },
+        },
       )
 
       setPoolTitle('')
@@ -43,6 +58,7 @@ export default function Home(props: HomeProps) {
   return (
     <div className="max-w-[1124px] h-screen mx-auto grid grid-cols-2 gap-28 items-center">
       <main>
+        <ToastContainer />
         <Image src={logoImg} alt="NLW Copa" />
 
         <h1 className="mt-14 text-white text-5xl font-bold leading-tight">
@@ -122,6 +138,6 @@ export const getStaticProps: GetStaticProps = async () => {
       guessCount: guessCountResponse.data.count,
       userCount: userCountResponse.data.count,
     },
-    revalidate: 10, // 10 segundos
+    revalidate: 60, // 1 minuto
   }
 }
