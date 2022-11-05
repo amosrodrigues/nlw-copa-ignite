@@ -79,7 +79,7 @@ export default function Home(props: HomeProps) {
             type="text"
             required
             placeholder="Qual nome do seu bolão?"
-            value={poolTitle}
+            value={poolTitle.toUpperCase()}
             onChange={(event) => setPoolTitle(event.target.value)}
           />
           <button
